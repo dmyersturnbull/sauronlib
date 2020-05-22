@@ -1,0 +1,200 @@
+[metadata]
+description-file = "README.md"
+
+[build-system]
+requires = ["poetry>=1.0", "coverage[toml]"]
+build-backend = "poetry.masonry.api"
+
+
+#########################################################################################
+# Poetry metadata
+#########################################################################################
+
+[tool.poetry]
+name = "sauronlib"
+version = "0.1.0"
+description = "High-level API to control hardware in scientific experiments."
+keywords = ['']
+authors = ["Douglas Myers-Turnbull", "Cole Helsell", "Chris S Ki"]
+maintainers = ["Douglas Myers-Turnbull"]
+license = "Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/dmyersturnbull/sauronlib"
+repository = "https://github.com/dmyersturnbull/sauronlib"
+documentation = "https://sauronlib.readthedocs.io"
+# TODO Add topics here
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Natural Language :: English",
+    "License :: OSI Approved :: Apache Software License",
+	"Programming Language :: Python",
+	"Programming Language :: C++",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+	"Intended Audience :: Developers",
+	"Intended Audience :: Science/Research",
+	"Intended Audience :: Education",
+    "Operating System :: OS Independent",
+	"Operating System :: MacOS :: MacOS X",
+	"Operating System :: Microsoft :: Windows :: Windows 10",
+	"Operating System :: POSIX :: Linux",
+    "Environment :: Console",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+	"Topic :: System :: Hardware :: Hardware Drivers",
+	"Topic :: Scientific/Engineering"
+]
+include = [
+    "README.md",
+    "LICENSE.txt",
+    "CHANGELOG.md"
+]
+
+[tool.poetry.urls]
+CI = "https://github.com/dmyersturnbull/sauronlib/actions"
+Issues = "https://github.com/dmyersturnbull/sauronlib/issues"
+Download = "https://pypi.org/project/sauronlib/"
+
+
+#########################################################################################
+# Poetry build & dependencies
+#########################################################################################
+
+[tool.poetry.scripts]
+# TODO Is your code a script?
+tyrannosaurus = "sauronlib.cli:cli"
+
+[tool.poetry.dependencies]
+python                   = ">=3.7, <4"
+tomlkit                  = "^0.6"
+importlib-metadata       = "^1.6"
+numpy                    = "^1.18"
+pandas                   = "^0.1"
+typer                    = "^0.2"
+py-cpuinfo               = "^0.5
+Pint                     = "^0.11"
+terminaltables           = "^3.1"
+
+[tool.poetry.dev-dependencies]
+pre-commit               = "^2.3"
+pytest                   = "^5.4"
+coverage                 = {extras = ["toml"], version = "^5.1"}
+pytest-cov               = "^2.8"
+sphinx                   = "^3.0"
+sphinx-autoapi           = "^1.3"
+sphinx-rtd-theme         = "^0.4.3"
+mypy                     = "^0.750"
+flake8                   = "^3.7"
+flake8-docstrings        = "^1.5"
+black                    = "=19.10b0"
+isort                    = "^4.3"
+sphinx-autodoc-typehints = "^1.10"
+xdoctest                 = "^0.12"
+hypothesis               = "^5.10"
+flake8-bandit            = "^2.1"
+flake8-bugbear           = "^20.1"
+coveralls                = "^2.0"
+tyrannosaurus            = "^0.5"
+
+[tool.poetry.extras]
+# manually listed
+docs    = ["sphinx", "sphinx-rtd-theme", "sphinx-autoapi", "sphinx-autodoc-typehints"]
+# auto-filled from dev-deps
+dev     = [
+        "tyrannosaurus",
+        "pre-commit", "pytest", "coverage", "xdoctest", "hypothesis",
+        "sphinx", "sphinx-autodoc-typehints", "sphinx-autoapi",
+        "mypy",
+        "flake8", "flake8-docstrings",
+        "black", "isort",
+        "flake8-bandit", "flake8-bugbear"
+]
+
+
+#########################################################################################
+# Tyrannosaurus
+#########################################################################################
+
+[tool.tyrannosaurus.options]
+align    = true
+
+[tool.tyrannosaurus.sources]
+# use a literal value ('') or refer to a pyproject setting
+# 2020-05-22 is the date you run it at, and 2020-05-22_11-02-33 is the datetime
+status             = "'Development'"
+date               = "'2020-05-22'"
+copyright          = "'Copyright 2020'"
+version            = "tool.poetry.version"
+release            = "tool.poetry.version"
+pyversions         = "tool.poetry.dependencies"
+devdeps            = "tool.poetry.dev-dependencies"
+linelength         = "tool.black.line-length"
+# TODO Fill in authors, contributors, and maintainers
+# Can be literal lists or pyproject setting references
+# Use this syntax: "Douglas Myers-Turnbull <github:dmyersturnbull,orcid:0000-0003-3610-4808>"
+# You should include Github usernames and Orcid IDs if they're available
+# But they're not required
+authors = [
+    "<<Author Name>> <github:<<username>>,orcid:<<id>>>"
+]
+contributors = [
+
+]
+maintainers = "tool.tyrannosaurus.sources.authors"
+
+[tool.tyrannosuarus.paths]
+recipe             = "'recipes/sauronlib/meta.yml'"
+environment        = "'environment.yml'"
+
+[tool.tyrannosaurus.targets]
+# these are file and directory names, without filename extensions
+# they will only be synced if they exist; never created
+# to get a recipe and anaconda env, run 'tyrannosaurus recipe' and 'tyrannosaurus env'
+pyproject    = true
+init         = true
+tox          = true
+docs         = true
+recipes      = true
+license      = true
+authors      = true
+github       = true
+travis       = true
+dockerfile   = true
+readme       = true
+changelog    = true
+citation     = true
+codemeta     = true
+environment  = false
+
+
+#########################################################################################
+# Style checking
+#########################################################################################
+
+[tool.coverage.paths]
+source = ["sauronlib"]
+
+[tool.coverage.run]
+source = ["sauronlib"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.black]
+line-length = 100
+target-version = ["py37", "py38"]
+
+[tool.isort]
+line_length = 100
+[mypy]
+check_untyped_defs = true
+strict_optional = true
+
+[pycodestyle]
+max-line-length = 100
+statistics = true
+
+[pydocstyle]
+# 212 and 213 contradict; 203 and 204 contradict; D302 is not relevant in Py3
+ignore = ["D203", "D212", "D302"]
