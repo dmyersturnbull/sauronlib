@@ -14,7 +14,7 @@ build-backend = "poetry.masonry.api"
 name = "sauronlib"
 version = "0.1.0"
 description = "High-level API to control hardware in scientific experiments."
-keywords = ['']
+keywords = ["arduino", "hardware", "scientific", "experiments"]
 authors = ["Douglas Myers-Turnbull", "Cole Helsell", "Chris S Ki"]
 maintainers = ["Douglas Myers-Turnbull"]
 license = "Apache-2.0"
@@ -22,7 +22,6 @@ readme = "README.md"
 homepage = "https://github.com/dmyersturnbull/sauronlib"
 repository = "https://github.com/dmyersturnbull/sauronlib"
 documentation = "https://sauronlib.readthedocs.io"
-# TODO Add topics here
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
     "Natural Language :: English",
@@ -62,7 +61,6 @@ Download = "https://pypi.org/project/sauronlib/"
 #########################################################################################
 
 [tool.poetry.scripts]
-# TODO Is your code a script?
 tyrannosaurus = "sauronlib.cli:cli"
 
 [tool.poetry.dependencies]
@@ -130,13 +128,10 @@ release            = "tool.poetry.version"
 pyversions         = "tool.poetry.dependencies"
 devdeps            = "tool.poetry.dev-dependencies"
 linelength         = "tool.black.line-length"
-# TODO Fill in authors, contributors, and maintainers
-# Can be literal lists or pyproject setting references
-# Use this syntax: "Douglas Myers-Turnbull <github:dmyersturnbull,orcid:0000-0003-3610-4808>"
-# You should include Github usernames and Orcid IDs if they're available
-# But they're not required
 authors = [
-    "<<Author Name>> <github:<<username>>,orcid:<<id>>>"
+    "Douglas Myers-Turnbull <github:dmyersturnbull,orcid:0000-0003-3610-4808>",
+	"Chris S Ki <github:chriski777>",
+	"Cole Helsell <github:chelsell,orcid:0000-0002-8869-3125>"
 ]
 contributors = [
 
